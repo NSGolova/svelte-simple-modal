@@ -1,13 +1,6 @@
 /// <reference types="svelte" />
 import type { SvelteComponent } from "svelte";
 
-/**
- * Create a Svelte component with props bound to it.
- */
-export declare function bind(
-  component: Component,
-  props: Record<string, any>
-): Component;
 export type Component =
   | typeof import("svelte").SvelteComponent
   | typeof import("svelte").SvelteComponent<any>;

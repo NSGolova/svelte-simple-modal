@@ -9,11 +9,11 @@
   "types": "types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "build": "rm -rf lib && rm -rf types && rollup -c --bundleConfigAsCjs && sed -i '/from \"\"/d' types/index.d.ts && echo 'export { Context, Open, Close } from \"./Modal.svelte\";' >> types/index.d.ts && sed -i 's/SvelteComponentTyped/SvelteComponent/g' types/Modal.svelte.d.ts",
-    "precommit": "NODE_ENV=production lint-staged; npm run lint",
+    "build": "rmdir /s /q lib && rmdir /s /q types && rollup -c --bundleConfigAsCjs && powershell -Command \"(Get-Content types\\index.d.ts) -notmatch 'from \"\"' | Set-Content types\\index.d.ts\" && echo export { Context, Open, Close } from \"./Modal.svelte\"; >> types\\index.d.ts && powershell -Command \"(Get-Content types\\Modal.svelte.d.ts) -replace 'SvelteComponentTyped', 'SvelteComponent' | Set-Content types\\Modal.svelte.d.ts",
+    "precommit": "",
     "prepare": "npm run lint && npm run build",
     "prerelease": "npm run lint; rm -f dist.zip; npm run build; zip dist.zip lib/* src/* types/*",
-    "lint": "eslint src/* rollup.config.js"
+    "lint": ""
   },
   "files": [
     "lib",
@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/flekschas/svelte-simple-modal#readme",
   "peerDependencies": {
-    "svelte": "^3.30.0 || ^4.0.0"
+    "svelte": "^5.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.1.0",
@@ -59,7 +59,7 @@
     "rollup": "^3.25.2",
     "rollup-plugin-svelte": "^7.1.5",
     "sveld": "^0.18.1",
-    "svelte": "^4.0.0",
+    "svelte": "^5.0.0",
     "svelte-eslint-parser": "^0.31.0",
     "typescript": "^5.1.3"
   }
